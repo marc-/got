@@ -60,7 +60,7 @@ public class CompleteQuestCommand extends AbstractCommand {
       }
 
     } else {
-      game(context, GAME_SYSTEM_ERROR_NOT_QUEST_GIVER, target.getName());
+      system(context, GAME_SYSTEM_ERROR_NOT_QUEST_GIVER, target.getName());
     }
 
   }
