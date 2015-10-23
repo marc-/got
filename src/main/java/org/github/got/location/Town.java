@@ -7,6 +7,12 @@ import org.github.got.entity.NonPlayerCharacter;
 import org.github.got.entity.Oracle;
 import org.github.got.entity.Vendor;
 
+/**
+ * Vendors and NPC currently can be found inly in Town.
+ * 
+ * @author Maksim Chizhov
+ *
+ */
 public class Town extends Location {
 
   public Town(final Location west, final Location east, final Location north, final Location south) {

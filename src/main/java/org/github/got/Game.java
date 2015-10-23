@@ -31,12 +31,32 @@ import org.github.got.commands.UseCommand;
 import org.github.got.commands.ViewItemCommand;
 import org.github.got.commands.ViewQuestCommand;
 
+/**
+ * Game entry point.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public final class Game {
 
+  /**
+   * Indicate if game is in progress, i.e character created and game started. To
+   * be removed.
+   */
+  @Deprecated
   private static boolean inProgress = false;
+  /**
+   * Game exit flag.
+   */
   private boolean quit = false;
+  /**
+   * Captures user input.
+   */
   private Scanner scanner;
 
+  /**
+   * Game engine.
+   */
   private static Engine ENGINE;
 
   public static void main(final String[] args) {
@@ -44,6 +64,9 @@ public final class Game {
     game.start();
   }
 
+  /**
+   * Registers all available command in engine.
+   */
   public Game() {
     Engine.registerCommand(new InitCommand());
     Engine.registerCommand(new ForceQuitCommand());
@@ -74,6 +97,9 @@ public final class Game {
     Engine.registerCommand(new ViewQuestCommand());
   }
 
+  /**
+   * Starts main loop.
+   */
   private void start() {
     try (final Scanner s = new Scanner(System.in, "utf8")) {
       scanner = s;
@@ -85,6 +111,12 @@ public final class Game {
     }
   }
 
+  /**
+   * Initializes game. Basically displays caption and start up tips.
+   *
+   * @author Maksim Chizhov
+   *
+   */
   @CommandA(value = { Command.INIT }, runOnce = true)
   private static class InitCommand extends AbstractCommand {
 
@@ -102,6 +134,11 @@ public final class Game {
 
   }
 
+  /**
+   * Quite the game. Asks for confirmation. All unsaved progress will be lost.
+   *
+   * @author Maksim Chizhov
+   */
   @CommandA(value = { "quit", "q" })
   private class QuitCommand extends AbstractCommand {
 
@@ -112,6 +149,12 @@ public final class Game {
 
   }
 
+  /**
+   * Quits game without confirmation. All unsaved progress will be lost.
+   *
+   * @author Maksim Chizhov
+   *
+   */
   @CommandA({ "q!" })
   private class ForceQuitCommand implements Command {
 

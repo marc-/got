@@ -19,6 +19,12 @@ import org.github.got.entity.NonPlayerCharacter;
 import org.github.got.entity.Player;
 import org.github.got.item.ItemStack;
 
+/**
+ * Surrender quest to NCP, receive rewards and experience.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA({ "complete|cq (?<name>([a-z- ]+)|([0-9]+))" })
 public class CompleteQuestCommand extends AbstractCommand {
 

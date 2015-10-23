@@ -14,6 +14,12 @@ import org.github.got.CommandA;
 import org.github.got.Context;
 import org.github.got.Context.Scope;
 
+/**
+ * Saves current player's progress (quests, items, level, stats).
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "save", "s" }, scope = Scope.TOWN)
 public class SaveGameCommand extends AbstractCommand {
 

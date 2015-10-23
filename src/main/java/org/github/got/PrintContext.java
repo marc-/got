@@ -2,6 +2,12 @@ package org.github.got;
 
 import java.io.PrintStream;
 
+/**
+ * Connects {@link Command} and {@link Printer}.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public class PrintContext {
 
   private final PrintStream printStream;

@@ -3,6 +3,11 @@ package org.github.got.commands;
 import org.github.got.CommandA;
 import org.github.got.Context;
 
+/**
+ * Displays quest log (only active items currently displayed only).
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "journal", "j" })
 public class JournalCommand extends AbstractCommand {
 

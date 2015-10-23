@@ -4,6 +4,11 @@ import org.github.got.Entity;
 import org.github.got.Item;
 import org.github.got.entity.Clazz;
 
+/**
+ * Not used.
+ * 
+ * @author Maksim Chizhov
+ */
 public class Weapon extends Item {
 
   private final Clazz clazz;

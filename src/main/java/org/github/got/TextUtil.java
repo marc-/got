@@ -3,6 +3,11 @@ package org.github.got;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Various text processing accelerators.
+ *
+ * @author Maksim Chizhov
+ */
 public abstract class TextUtil {
   public static final String EMPTY = "";
   public static final String SPACE = " ";

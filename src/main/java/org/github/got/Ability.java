@@ -7,7 +7,15 @@ import java.util.List;
 
 import org.github.got.entity.Clazz;
 
+/**
+ * Class describes combat abilities and spells.
+ *
+ * @author Maksim Chizhov
+ */
 public class Ability implements Searchable {
+  /**
+   * Ability/spell type.
+   */
   public static enum Type {
     MELEE,
     RANGED,
@@ -15,6 +23,13 @@ public class Ability implements Searchable {
 
     public final String value = toString().toLowerCase();
 
+    /**
+     * Every game class can only use one of the type accordingly.
+     *
+     * @param clazz
+     *          mob or player class
+     * @return type
+     */
     public static Type byClass(final Clazz clazz) {
       switch (clazz) {
       case HUNTER:
@@ -35,10 +50,15 @@ public class Ability implements Searchable {
   private final String name;
   private final String nameLookup;
   private final Type type;
+  /** Base damage(heal?) value. */
   private final int baseValue;
+  /** Strength damage modificator value. */
   private final float damageModStrength;
+  /** Agility damage modificator value. */
   private final float damageModAgility;
+  /** Intellect damage modificator value. */
   private final float damageModIntellect;
+  /** Spells spend mana. */
   private final int manaCost;
 
   public Ability(final String name, final int baseValue, final Type type, final float damageModStrength,
@@ -53,6 +73,13 @@ public class Ability implements Searchable {
     this.manaCost = manaCost;
   }
 
+  /**
+   * Some predefined class based abilities.
+   *
+   * @param clazz
+   *          player/mob class
+   * @return list of available abilities
+   */
   public static List<Ability> byClass(final Clazz clazz) {
     if (clazz == null) {
       return Collections.emptyList();
@@ -114,6 +141,11 @@ public class Ability implements Searchable {
     return manaCost;
   }
 
+  /**
+   * Describes ability/spell using template.
+   *
+   * @return formatted ability/spell info.
+   */
   public String describe() {
     return Resources.getString(GAME_DESCRIBE_ABILITY, name, type.value, baseValue);
   }

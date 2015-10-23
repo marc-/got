@@ -14,6 +14,14 @@ import org.github.got.Entity;
 import org.github.got.Entity.Attitude;
 import org.github.got.entity.Mob;
 
+/**
+ * Issues to attack neutral or hostile creature. Only create name can be used
+ * currently. Engine doesn't distinguish anyhow mob with same name but different
+ * class, level, etc. I.e. if there are two mobs with same name you can choose
+ * who to fight. It will be first mob in the list. Command turns on combat mode.
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "(attack|atk) (?<name>[a-z- ]+)" }, scope = Scope.LOCATION, starts = Scope.COMBAT)
 public class AttackCommand extends AbstractCommand {
 

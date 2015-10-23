@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * String resources. Provides access to string bundles.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public final class Resources {
   public static final ResourceBundle COLORS = ResourceBundle.getBundle("colors", Locale.getDefault());
   public static final ResourceBundle GAME = ResourceBundle.getBundle("game", Locale.getDefault());
@@ -114,6 +120,7 @@ public final class Resources {
   private static final String GAME_NAME = "game.name";
   private static final String BACKGROUND = "background";
   public static final String BKSPACE = "\u001b[1D";
+  static final String GAME_DESCRIBE_ITEM = "game.describe.item";
 
   private Resources() {
   }

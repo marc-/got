@@ -31,7 +31,7 @@ public class LocationTest {
     location.level = 5;
     Location.populateLocation(location);
     assertNotNull(location.creatures);
-    assertTrue(location.creatures.size() < Location.MAX_MONSTERS_PER_LOCATION);
+    assertTrue(location.creatures.size() < Formulas.MAX_MONSTERS_PER_LOCATION);
     location.creatures.forEach(c -> assertTrue(c.getLevel() >= 4 && c.getLevel() <= 6));
   }
 
@@ -57,7 +57,7 @@ public class LocationTest {
     final Location location = new Location(Type.TOWN);
     location.repopulate();
     assertNotNull(location.creatures);
-    assertTrue(location.creatures.size() < Location.MAX_MONSTERS_PER_LOCATION);
+    assertTrue(location.creatures.size() < Formulas.MAX_MONSTERS_PER_LOCATION);
   }
 
   @Test

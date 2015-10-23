@@ -17,7 +17,12 @@ import org.github.got.Entity.Attitude;
 import org.github.got.entity.NonPlayerCharacter;
 import org.github.got.entity.Vendor;
 
-@CommandA(value = { "(talk|tt) (to )?(?<name>[a-z-]+)$" }, scope = Scope.LOCATION, starts = Scope.TALK)
+/**
+ * Start conversation with NPC.
+ *
+ * @author Maksim Chizhov
+ */
+@CommandA(value = { "(talk|tt) (to )?(?<name>[a-z-]+)$" }, scope = Scope.TOWN, starts = Scope.TALK)
 public class TalkCommand extends AbstractCommand {
   private static Pattern PATTERN = Pattern.compile("(talk|tt) (to )?(?<name>[a-z- ]+)$");
 

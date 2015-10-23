@@ -5,6 +5,11 @@ import org.github.got.Context;
 import org.github.got.Context.Scope;
 import org.github.got.Entity;
 
+/**
+ * Concludes conversation, switch scope to {@link Scope#TOWN}.
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "bye", "bb" }, scope = Scope.TALK, starts = Scope.TOWN)
 public class ByeCommand extends AbstractCommand {
 

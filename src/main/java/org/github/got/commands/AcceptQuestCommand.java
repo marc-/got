@@ -16,6 +16,13 @@ import org.github.got.Quest;
 import org.github.got.entity.NonPlayerCharacter;
 import org.github.got.entity.Player;
 
+/**
+ * Accept specified by name or index quests. Only usable while talking to NPC
+ * (Oracle or Vendor currently).
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "(accept|aq) (?<name>([a-z- ]+|[0-9]+))" }, scope = Scope.TALK)
 public class AcceptQuestCommand extends AbstractCommand {
 

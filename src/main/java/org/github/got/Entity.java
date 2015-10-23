@@ -15,31 +15,80 @@ import org.github.got.commands.Engine;
 import org.github.got.entity.Clazz;
 import org.github.got.entity.NonPlayerCharacter;
 
+/**
+ * Represent base game entity -- player, NPC, mobs.
+ *
+ * @author Maksim Chizhov
+ */
 public abstract class Entity implements Searchable {
 
   public static final Logger LOGGER = Logger.getLogger(NonPlayerCharacter.class.getPackage().getName());
 
+  /**
+   * Entity attitude towards player.
+   */
   public enum Attitude {
+    /**
+     * Special attitude.
+     */
     ORACLE,
+    /**
+     * Used for NPCs, like vendors.
+     */
     FRIENDLY,
+    /**
+     * Neutral mobs, won't attack player.
+     */
     NEUTRAL,
+    /**
+     * With some chance will attack player who tries to leave location.
+     */
     HOSTILE;
 
+    /**
+     * Get associated {@link org.github.got.MessageType} to colorize output.
+     *
+     * @return messageType
+     */
     public MessageType messageType() {
       return MessageType.valueOf(name());
     }
   }
 
+  /**
+   * Player or mob level. Used for various calculations (like chance to hit in
+   * battle).
+   */
   private int level;
-
   private String name;
+  /**
+   * Entity alias to make user input processing case insensitive.
+   */
   private String nameLookup;
+  /**
+   * Just a fancy text near npc or player name in output. Does not affect
+   * gameplay.
+   */
   private String race;
+  /**
+   * Players are not limited on gender to be chosen. Feel free to put anything
+   * in here. Does not affect gameplay.
+   */
   private String gender;
+  /**
+   * In case character clazz. Stats, abilities and damage are calculated based
+   * on it.
+   */
   private Clazz clazz;
   private Attitude attitude;
   private final String description;
+  /**
+   * Displayed when conversation starts.
+   */
   private final String welcomeMessage;
+  /**
+   * Displayed when conversation end.
+   */
   private final String farewellMessage;
 
   private int stamina;
@@ -47,8 +96,17 @@ public abstract class Entity implements Searchable {
   private int agility;
   private int intellect;
 
+  /**
+   * Calculated based on stamina value.
+   */
   private int health;
+  /**
+   * Calculated based on intellect value.
+   */
   private int mana;
+  /**
+   * Combat spells and abilities.
+   */
   private List<Ability> abilities;
 
   public Entity(final String name, final String race, final String gender, final Clazz clazz, final Attitude affection,
@@ -247,8 +305,8 @@ public abstract class Entity implements Searchable {
   }
 
   public String describeStats() {
-    return Resources.getString(Resources.GAME_DESCRIBE_ENTITY_STATS, getLevel(), getStamina(), getStrength(), getAgility(),
-        getIntellect(), getHealth(), getMana());
+    return Resources.getString(Resources.GAME_DESCRIBE_ENTITY_STATS, getLevel(), getStamina(), getStrength(),
+        getAgility(), getIntellect(), getHealth(), getMana());
   }
 
   public String describeAbilities() {
@@ -263,14 +321,31 @@ public abstract class Entity implements Searchable {
     return abilities;
   }
 
+  /**
+   * Looking for ability by lower case name or position in list from user input.
+   *
+   * @param nameOrIndex
+   *          lower case spell/ability name or index (starting from 1) in list
+   * @return null if noting is found
+   */
   public Ability getAbility(final String nameOrIndex) {
     return Engine.lookup(nameOrIndex, abilities);
   }
 
+  /**
+   * Gets maximum mana point based on intellect value.
+   *
+   * @return maximum mana
+   */
   protected int maxMana() {
     return Formulas.maxMana(intellect);
   }
 
+  /**
+   * Gets maximum health point based on stamina value.
+   *
+   * @return maximum mana
+   */
   protected int maxHealth() {
     return Formulas.maxHealth(stamina);
   }
@@ -279,6 +354,11 @@ public abstract class Entity implements Searchable {
     return getHealth() == 0;
   }
 
+  /**
+   * Used for user deserialization.
+   *
+   * @param abilities
+   */
   protected void setAbilities(final List<Ability> abilities) {
     this.abilities = abilities;
   }

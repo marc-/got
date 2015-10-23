@@ -16,6 +16,15 @@ import org.github.got.Resources;
 import org.github.got.entity.Mob;
 import org.github.got.entity.Player;
 
+/**
+ * Move character to specified location if possible. If current location is
+ * populated with hostiles with some chance attempt to leave could fail and
+ * player receives critical hit. Allows to flee the battle (same rules as for
+ * regular move -- fail flee -- get hit hard).
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "go (west|east|north|south)", "(west|east|north|south)", "gw|ge|gn|gs" }, scope = { Scope.TALK,
     Scope.LOCATION, Scope.COMBAT }, starts = Scope.LOCATION)
 public class GoCommand extends CombatCommands {
@@ -65,6 +74,13 @@ public class GoCommand extends CombatCommands {
     return HANDLERS.get(context.getCommand()).handle(context);
   }
 
+  /**
+   * Attempts to sneak behind hostiles. With 70% angry mobs will spot you adn
+   * attack, 20% for calm mobs. Doesn't correlate to level.
+   *
+   * @param context
+   * @param hostiles
+   */
   private void attemptToSneak(final Context context, final List<Entity> hostiles) {
     // 70% that angry hostile mob will attack player
     Mob hostile = (Mob) hostiles.stream()
@@ -84,13 +100,18 @@ public class GoCommand extends CombatCommands {
     }
   }
 
+  /**
+   * Attempt to flee battle.
+   *
+   * @param context
+   */
   private void attemptToFlee(final Context context) {
     game(context, Resources.GAME_ACTIONS_FLEE);
     final Entity target = context.getTarget();
     final Player player = context.getPlayer();
     // Chance to flee ((player.level - target.level)*10 + 50)%, if attempt
     // fail, mob will critically hit you.
-    if (Formulas.fled(target, player)) {
+    if (Formulas.fled(player, target)) {
       game(context, Resources.GAME_EVENT_FLED);
       context.setTarget(null);
     } else {

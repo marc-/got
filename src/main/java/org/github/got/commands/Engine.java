@@ -19,6 +19,12 @@ import org.github.got.World;
 import org.github.got.entity.Player;
 import org.github.got.location.Town;
 
+/**
+ * Main command processor. Decides what command to execute depending on user
+ * input and scope. Tracks world changes and current target.
+ *
+ * @author Maksim Chizhov
+ */
 public class Engine {
   private static final Collection<Command> COMMANDS = new LinkedList<>();
   private static final Collection<Command> RUN_ONCE = new LinkedList<>();
@@ -117,7 +123,7 @@ public class Engine {
     if (!Scope.NONE.equals(annotation.starts()) && annotation.starts() != null) {
       if (Scope.LOCATION.equals(annotation.starts()) && world.getLocation() instanceof Town) {
         currentScope = Scope.TOWN;
-      }else{
+      } else {
         currentScope = annotation.starts();
       }
     }
@@ -220,7 +226,6 @@ public class Engine {
       public void setScope(final Scope scope) {
         currentScope = scope;
       }
-
 
     };
   }

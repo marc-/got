@@ -14,6 +14,12 @@ import org.github.got.entity.Player;
 import org.github.got.item.Consumable;
 import org.github.got.item.ItemStack;
 
+/**
+ * Use consumable item from inventory.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "use (?<name>([a-z- ]+|[0-9]+))" }, scope = { Scope.INGAME })
 public class UseCommand extends AbstractCommand {
 

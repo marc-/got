@@ -33,14 +33,30 @@ import org.github.got.item.Requirement;
 import org.github.got.item.Requirement.Type;
 import org.github.got.location.Town;
 
+/**
+ * Base combat method.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public abstract class CombatCommands extends AbstractCommand {
 
+  /**
+   * Revive upon a death user with full hp and mp in the town.
+   *
+   * @param context
+   */
   protected void revive(final Context context) {
     context.getPlayer().restore();
     context.setScope(Scope.TOWN);
     sendSpiritToTombStone(context);
   }
 
+  /**
+   * Sets location to Home. Repopulates previously visited locations.
+   *
+   * @param context
+   */
   protected void sendSpiritToTombStone(final Context context) {
     final World world = context.getWorld();
     repopulateLocations(world);
@@ -50,6 +66,13 @@ public abstract class CombatCommands extends AbstractCommand {
     gameRaw(context, world.getHome().describe());
   }
 
+  /**
+   * Move character to specified location if there is a path.
+   *
+   * @param context
+   * @param location
+   * @return
+   */
   protected boolean goTo(final Context context, final Location location) {
     if (location == null) {
       game(context, GAME_ACTIONS_GOTO_ERROR_NOWAY);
@@ -67,6 +90,11 @@ public abstract class CombatCommands extends AbstractCommand {
     return true;
   }
 
+  /**
+   * Repopulates visited location after 3 location changes.
+   *
+   * @param world
+   */
   private void repopulateLocations(final World world) {
     final Queue<Location> visitedLocations = world.getVisitedLocations();
     final Location currentLocation = world.getLocation();
@@ -77,6 +105,16 @@ public abstract class CombatCommands extends AbstractCommand {
     }
   }
 
+  /**
+   * Attacks specified target with specified ability.
+   *
+   * @param context
+   * @param source
+   * @param target
+   * @param ability
+   * @param forceCrit
+   *          should ability mandatory have critical affect
+   */
   protected void attack(final Context context, final Entity source, final Entity target, final Ability ability,
       final boolean forceCrit) {
     final Entity hostile = source instanceof Player ? target : source;
@@ -117,6 +155,12 @@ public abstract class CombatCommands extends AbstractCommand {
     }
   }
 
+  /**
+   * Message depending on who performs the action (player or mob).
+   *
+   * @param target
+   * @return
+   */
   private String missOrBeingMissed(final Entity target) {
     if (target instanceof Player) {
       return GAME_ACTIONS_COMBAT_MOB_MISSED;
@@ -125,6 +169,12 @@ public abstract class CombatCommands extends AbstractCommand {
     }
   }
 
+  /**
+   * Collect loot after kill. Generates random amount of money and with some
+   * chance quest items. No other loot is available at the moment.
+   *
+   * @param context
+   */
   private void loot(final Context context) {
     gameRaw(context, "\t***YAY!LOOT!***");
     final List<ItemStack> items = generateLoot(context.getTarget(), context.getPlayer());
@@ -137,6 +187,13 @@ public abstract class CombatCommands extends AbstractCommand {
     game(context, GAME_DESCRIBE_LOOT_MONEY, coins);
   }
 
+  /**
+   * Generates quest specific loot.
+   *
+   * @param target
+   * @param player
+   * @return
+   */
   private List<ItemStack> generateLoot(final Entity target, final Player player) {
     final Stream<List<Requirement>> requirements = player.getQuests().stream().map(q -> q.getRequirements());
     return requirements.flatMap(rs -> {
@@ -146,6 +203,12 @@ public abstract class CombatCommands extends AbstractCommand {
     }).collect(Collectors.toList());
   }
 
+  /**
+   * Message depending on who performs the action (player or mob).
+   *
+   * @param target
+   * @return
+   */
   private static String killOrBeeingKilled(final Entity target) {
     if (target instanceof Player) {
       return GAME_EVENT_YOU_ARE_DEAD;
@@ -154,6 +217,12 @@ public abstract class CombatCommands extends AbstractCommand {
     }
   }
 
+  /**
+   * Message depending on who performs the action (player or mob).
+   *
+   * @param target
+   * @return
+   */
   private static String hitOrBeingHit(final Entity target, final boolean crit) {
     final StringBuilder mgs = new StringBuilder("game.actions.combat.");
     if (target instanceof Player) {

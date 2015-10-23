@@ -21,6 +21,12 @@ import org.github.got.item.ItemStack;
 import org.github.got.item.Requirement;
 import org.github.got.item.Weapon;
 
+/**
+ * Sell goods and gives quests.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public class Vendor extends NonPlayerCharacter {
 
   private final static float COMMISSION = 0.5f;

@@ -12,6 +12,13 @@ import org.github.got.Context.Scope;
 import org.github.got.Item;
 import org.github.got.entity.Vendor;
 
+/**
+ * View item description. Only usable when talk to vendor. Will not work on
+ * items in inventory.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "(view item)|(vi) (?<name>[a-z 0-9-]+)" }, scope = Scope.TALK)
 public class ViewItemCommand extends AbstractCommand {
 

@@ -7,6 +7,12 @@ import org.github.got.Context;
 import org.github.got.Context.Scope;
 import org.github.got.TextUtil;
 
+/**
+ * Outputs IRC like emotion.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "/me .*", }, scope = Scope.INGAME)
 public class EmotionCommand extends AbstractCommand {
 

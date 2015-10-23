@@ -15,7 +15,13 @@ import org.github.got.entity.Player;
 import org.github.got.entity.Vendor;
 import org.github.got.item.ItemStack;
 
-@CommandA(value = { "sell (?<name>([a-z- ]+|[0-9]+))( (?<amount>[0-9]+))?$" }, starts = Scope.TALK)
+/**
+ * Sell items to vendor. Usable only when talking to vendor.
+ *
+ * @author Maksim Chizhov
+ *
+ */
+@CommandA(value = { "sell (?<name>([a-z- ]+|[0-9]+))( (?<amount>[0-9]+))?$" }, scope = Scope.TALK)
 public class SellCommand extends AbstractCommand {
 
   private static final Pattern PATTERN = Pattern.compile("sell (?<name>([a-z- ]+|[0-9]+))( (?<amount>[0-9]+))?$");

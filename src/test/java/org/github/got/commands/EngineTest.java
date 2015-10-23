@@ -126,10 +126,7 @@ public class EngineTest {
     final Item item = new Item("TEST_ITEM", 0);
     final ItemStack itemStack = new ItemStack(new Item("TEST_ITEM_STACK", 0), 0);
     final Quest quest = new Quest("TEST_QUEST", 0, null, null, null, null, null, null, 0);
-    final List<Searchable> iteams = Arrays.asList(ability,
-        item,
-        itemStack,
-        quest);
+    final List<Searchable> iteams = Arrays.asList(ability, item, itemStack, quest);
     assertEquals(ability, Engine.lookup("1", iteams));
     assertEquals(ability, Engine.lookup("test_ability", iteams));
 

@@ -20,6 +20,12 @@ import org.github.got.World;
 import org.github.got.entity.Clazz;
 import org.github.got.entity.Player;
 
+/**
+ * Start a new game. All unsaved progress will be lost.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "new", "n" }, starts = Scope.TOWN)
 public class NewGameCommand extends AbstractCommand {
 

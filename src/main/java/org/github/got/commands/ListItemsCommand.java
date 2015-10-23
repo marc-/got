@@ -7,6 +7,11 @@ import org.github.got.Context;
 import org.github.got.Context.Scope;
 import org.github.got.entity.Vendor;
 
+/**
+ * Lists vendor's items for sell. Only usable when talk to vendor.
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "list items", "ls i" }, scope = Scope.TALK)
 public class ListItemsCommand extends AbstractCommand {
 

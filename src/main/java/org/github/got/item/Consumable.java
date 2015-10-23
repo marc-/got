@@ -4,8 +4,18 @@ import org.github.got.Entity;
 import org.github.got.Item;
 import org.github.got.Resources;
 
+/**
+ * Indicates that item can be eaten or drunk. Contains information on effect
+ * upon consumption.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public class Consumable extends Item {
 
+  /**
+   * Effect on payer.
+   */
   public enum Effect {
     RESTORES_HEALH(Resources.getString("game.resource.health")),
     RESTORES_MANA(Resources.getString("game.resource.mana"));

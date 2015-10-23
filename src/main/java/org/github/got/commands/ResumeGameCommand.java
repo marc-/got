@@ -18,6 +18,12 @@ import org.github.got.Game;
 import org.github.got.World;
 import org.github.got.entity.Player;
 
+/**
+ * Resume saved game. Current progress will be lost.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "resume", "r" }, starts = Scope.TOWN)
 public class ResumeGameCommand extends AbstractCommand {
 

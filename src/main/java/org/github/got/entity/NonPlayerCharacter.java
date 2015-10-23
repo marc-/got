@@ -13,6 +13,11 @@ import org.github.got.Quest;
 import org.github.got.Resources;
 import org.github.got.commands.Engine;
 
+/**
+ * Quest giver.
+ *
+ * @author Maksim Chizhov
+ */
 public class NonPlayerCharacter extends Entity {
 
   protected final List<Quest> quests;

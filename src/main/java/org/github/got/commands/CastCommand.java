@@ -13,6 +13,15 @@ import org.github.got.Entity;
 import org.github.got.entity.Mob;
 import org.github.got.entity.Player;
 
+/**
+ * Cast specified spell or ability on current target. Command is only usable in
+ * combat mod. Keep in mind that spell use mana. Once creature runs out of mana,
+ * it won't do anything until battle ends. If player out of mana, mana potions
+ * can be used. If no mana potions RUN FOR YOUR LIFE!!! Spell/ability name or
+ * index can be used.
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "cast (?<name>([a-z- ]+|[0-9]+))" }, scope = Scope.COMBAT, starts = Scope.LOCATION)
 public class CastCommand extends CombatCommands {
 

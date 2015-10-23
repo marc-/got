@@ -31,14 +31,32 @@ import org.github.got.Resources;
 import org.github.got.commands.Engine;
 import org.github.got.item.ItemStack;
 
+/**
+ * It's you.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public class Player extends Entity implements Externalizable {
 
   private static final long serialVersionUID = -2045840728303263845L;
 
   private final List<Quest> quests = new LinkedList<>();
+  /**
+   * Track completed quests to no complete it multipal times.
+   */
   private final Set<String> completedQuests = new HashSet<>();
+  /**
+   * You bag. Actually not limited to 16 slots.
+   */
   private final List<ItemStack> inventory = new ArrayList<>(16);
+  /**
+   * Budget.
+   */
   private int coins = 10;
+  /**
+   * Current experience.
+   */
   private int experience = 0;
 
   public Player() {
@@ -68,6 +86,13 @@ public class Player extends Entity implements Externalizable {
     coins -= amount;
   }
 
+  /**
+   * Adds item to inventory. Start tracking quest, if item in list of
+   * requirements.
+   *
+   * @param item
+   * @param amount
+   */
   public void addToInventory(final Item item, final int amount) {
     final ItemStack is = itemLookup(item.getNameLookup());
     if (is == null) {
@@ -81,6 +106,12 @@ public class Player extends Entity implements Externalizable {
     }
   }
 
+  /**
+   * Removes one or several items from inventory.
+   *
+   * @param item
+   * @param amount
+   */
   public void removeItemFromInventory(final Item item, final int amount) {
     final ItemStack is = itemLookup(item.getNameLookup());
     if (is != null) {
@@ -99,10 +130,21 @@ public class Player extends Entity implements Externalizable {
     return quests;
   }
 
+  /**
+   * Checks if quest among completed.
+   *
+   * @param nameLookup
+   * @return
+   */
   public boolean isQuestCompleted(final String nameLookup) {
     return completedQuests.contains(nameLookup);
   }
 
+  /**
+   * Starts new quest, start tracking requirements.
+   *
+   * @param quest
+   */
   public void accept(final Quest quest) {
     quests.add(quest);
     quest.getRequirements().stream().forEach(r -> {
@@ -141,6 +183,13 @@ public class Player extends Entity implements Externalizable {
     return Resources.getString(GAME_DESCRIBE_PLAYER_STATS, super.describeStats(), experience, getExperienceToLevelup());
   }
 
+  /**
+   * Complete quests if requirements are met. Remove from active quests, add to
+   * completed. Takes rewards and experience from quest.
+   *
+   * @param quest
+   * @param reward
+   */
   public void complete(final Quest quest, final ItemStack reward) {
     if (quest.meetRequirement() && quests.contains(quest)) {
       if (reward != null) {
@@ -152,6 +201,11 @@ public class Player extends Entity implements Externalizable {
     }
   }
 
+  /**
+   * Add experience and check if new level reached.
+   *
+   * @param experience
+   */
   public void addExperience(final int experience) {
     this.experience += experience;
     if (this.experience / getExperienceToLevelup() > 0) {
@@ -159,6 +213,9 @@ public class Player extends Entity implements Externalizable {
     }
   }
 
+  /**
+   * Increase stats upon new level.
+   */
   public void levelUp() {
     experience -= getExperienceToLevelup();
     incrementLevel(1);
@@ -174,6 +231,9 @@ public class Player extends Entity implements Externalizable {
     return Formulas.experienceToLevelup(getLevel());
   }
 
+  /**
+   * Restore mp and hp.
+   */
   public void restore() {
     retoreHealth(maxHealth());
     retoreMana(maxMana());
@@ -187,6 +247,9 @@ public class Player extends Entity implements Externalizable {
     return inventory;
   }
 
+  /**
+   * Serializes players.
+   */
   @Override
   public void writeExternal(final ObjectOutput out) throws IOException {
     out.writeUTF(getName());
@@ -217,6 +280,10 @@ public class Player extends Entity implements Externalizable {
     }
   }
 
+  /**
+   * Deserializes players. Requires to items and quest to exists in the world
+   * already.
+   */
   @Override
   public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
     setName(in.readUTF());

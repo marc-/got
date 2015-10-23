@@ -6,6 +6,11 @@ import org.github.got.Item;
 import org.github.got.Resources;
 import org.github.got.Searchable;
 
+/**
+ * Several items of same origine are stacked togeather.
+ *
+ * @author Maksim Chizhov
+ */
 public class ItemStack implements Searchable {
 
   private final Item item;

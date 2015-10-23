@@ -7,11 +7,28 @@ import java.util.stream.IntStream;
 
 import org.github.got.RandomUtil;
 
+/**
+ * Describes game class.
+ *
+ * @author Maksim Chizhov
+ */
 public enum Clazz {
 
+  /**
+   * Tank. More hp, less damage.
+   */
   WARRIOR(5, 5, 0, 0),
+  /**
+   * Damage dealer. Not so much hp though.
+   */
   MAGE(3, 0, 0, 8),
+  /**
+   * "Ranged" damage dealer, medium heal and damage.
+   */
   HUNTER(4, 0, 6, 0),
+  /**
+   * A vendor. Won't help you in case of raid.
+   */
   VENDOR(0, 0, 0, 0);
 
   public final int stamina;

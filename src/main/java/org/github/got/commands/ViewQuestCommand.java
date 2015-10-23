@@ -12,6 +12,13 @@ import org.github.got.Context.Scope;
 import org.github.got.Quest;
 import org.github.got.entity.NonPlayerCharacter;
 
+/**
+ * Show quest details. Only usable while talking to NPC. Will not work with
+ * quest in journal.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "(view quest)|(vq) (?<name>[a-z 0-9-]+)" }, scope = Scope.TALK)
 public class ViewQuestCommand extends AbstractCommand {
 

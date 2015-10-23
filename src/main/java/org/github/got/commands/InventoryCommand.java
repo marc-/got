@@ -3,6 +3,11 @@ package org.github.got.commands;
 import org.github.got.CommandA;
 import org.github.got.Context;
 
+/**
+ * Lists items in players bag.
+ * 
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "inventory", "i" })
 public class InventoryCommand extends AbstractCommand {
   @Override

@@ -4,6 +4,12 @@ import org.github.got.CommandA;
 import org.github.got.Context;
 import org.github.got.Context.Scope;
 
+/**
+ * List user's spells and abilities.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "list (spells|abilities)", "ls (s|a)" }, scope = Scope.INGAME)
 public class ListSpellsCommand extends AbstractCommand {
 

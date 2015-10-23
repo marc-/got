@@ -17,6 +17,12 @@ import org.github.got.item.Consumable;
 import org.github.got.item.Consumable.Effect;
 import org.github.got.item.ItemStack;
 
+/**
+ * Someone who supposed to lead player over the story to his/her destiny.
+ * 
+ * @author Maksim Chizhov
+ *
+ */
 public class Oracle extends NonPlayerCharacter {
 
   public Oracle() {

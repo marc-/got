@@ -13,8 +13,17 @@ import org.github.got.Entity;
 import org.github.got.RandomUtil;
 import org.github.got.Resources;
 
+/**
+ * Creature to fight with.
+ *
+ * @author Maksim Chizhov
+ */
 public abstract class Mob extends Entity {
 
+  /**
+   * Mob's mood. Depending on this, mob will attack player or ignore while
+   * travel across the world.
+   */
   public enum Mood {
     ANGRY(Resources.getString(GAME_MOOD_ANGRY)),
     CALM(Resources.getString(GAME_MOOD_CALM));
@@ -64,6 +73,10 @@ public abstract class Mob extends Entity {
     return mood;
   }
 
+  /**
+   * Animal mob. Don't gave gender.
+   *
+   */
   public static class Animal extends Mob {
 
     public Animal(final String name, final int level, final Clazz clazz, final Attitude attitude, final Mood mood,

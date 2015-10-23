@@ -4,6 +4,11 @@ import org.github.got.Command;
 import org.github.got.CommandA;
 import org.github.got.Context;
 
+/**
+ * Prints game help.
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA({ "help", "h" })
 public class HelpCommand extends AbstractCommand implements Command {
 

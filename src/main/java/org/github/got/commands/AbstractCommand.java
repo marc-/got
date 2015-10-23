@@ -20,6 +20,11 @@ import org.github.got.PrintContext;
 import org.github.got.Printer;
 import org.github.got.Resources;
 
+/**
+ * Basic command functionality. Grant access to user input and console output.
+ *
+ * @author Maksim Chizhov
+ */
 public abstract class AbstractCommand implements Command {
 
   protected static final Printer PRINTER = new SimplePrinter();

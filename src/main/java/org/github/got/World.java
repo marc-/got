@@ -9,11 +9,16 @@ import java.util.Queue;
 
 import org.github.got.location.Town;
 
+/**
+ * Game world. Contains information about locations, quests and items.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public class World {
-  private static int MAX_WIDTH = 10;
-  private static int MIN_WIDTH = 3;
-  private static int MAX_HEIGHT = 10;
-  private static int MIN_HEIGHT = 3;
+  /**
+   * Home location.
+   */
   private final Town home;
   private Location location;
   private final Queue<Location> visitedLocations = new LinkedList<>();
@@ -32,9 +37,15 @@ public class World {
     return home;
   }
 
+  /**
+   * Generates random brand new better world. World is matrix of NxM with Town
+   * somewhere in the center.
+   *
+   * @return world
+   */
   public static World generate() {
-    final int width = RandomUtil.nextInt(MAX_WIDTH - MIN_WIDTH) + MIN_WIDTH;
-    final int height = RandomUtil.nextInt(MAX_HEIGHT - MIN_WIDTH) + MIN_HEIGHT;
+    final int width = RandomUtil.nextInt(Formulas.WORLD_MAX_WIDTH - Formulas.WORLD_MIN_WIDTH) + Formulas.WORLD_MIN_WIDTH;
+    final int height = RandomUtil.nextInt(Formulas.WORLD_MAX_HEIGHT - Formulas.WORLD_MIN_WIDTH) + Formulas.WORLD_MIN_HEIGHT;
     final List<Location> locations = new ArrayList<>(width + height);
     Town home = null;
     int lvl = 1;

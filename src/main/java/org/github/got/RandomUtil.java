@@ -2,6 +2,12 @@ package org.github.got;
 
 import java.util.Random;
 
+/**
+ * Simplifies random numbers generation.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 public abstract class RandomUtil {
 
   private static Random RANDOM = new Random();
@@ -21,6 +27,12 @@ public abstract class RandomUtil {
     return RANDOM.nextBoolean();
   }
 
+  /**
+   * Gets random item from array (like {@link Enum#values}).
+   *
+   * @param objects
+   * @return
+   */
   @SuppressWarnings("unchecked")
   public static <T> T randomObject(final T... objects) {
     return objects[nextInt(objects.length)];

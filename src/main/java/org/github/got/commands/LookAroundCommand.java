@@ -4,6 +4,12 @@ import org.github.got.CommandA;
 import org.github.got.Context;
 import org.github.got.Context.Scope;
 
+/**
+ * Shows surrounding including NPCs, mobs and connected locations.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "l(ook( around)?)?|ls$" }, scope = Scope.INGAME)
 public class LookAroundCommand extends AbstractCommand {
 

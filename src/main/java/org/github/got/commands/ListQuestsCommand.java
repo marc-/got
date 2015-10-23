@@ -7,6 +7,11 @@ import org.github.got.Context;
 import org.github.got.Context.Scope;
 import org.github.got.entity.NonPlayerCharacter;
 
+/**
+ * Lists NPC quest players is eligible start. Only usable when talk to NPC.
+ *
+ * @author Maksim Chizhov
+ */
 @CommandA(value = { "list quests", "ls q" }, scope = Scope.TALK)
 public class ListQuestsCommand extends AbstractCommand {
 

@@ -15,6 +15,12 @@ import org.github.got.Item;
 import org.github.got.entity.Player;
 import org.github.got.entity.Vendor;
 
+/**
+ * Buy item from vendor. Name or index can be specified.
+ *
+ * @author Maksim Chizhov
+ *
+ */
 @CommandA(value = { "buy (?<name>([a-z- ]+|[0-9]+))( (?<amount>[0-9]+))?$" }, starts = Scope.TALK)
 public class BuyCommand extends AbstractCommand {
 
