@@ -1,4 +1,4 @@
-![travis-ci badge](https://travis-ci.org/marc-/got.svg)
+[![Build Status](https://travis-ci.org/marc-/got.svg)](https://travis-ci.org/marc-/got)
 #Game of Thorns
 Simple console text based game written in java. 
 ##Requirements
