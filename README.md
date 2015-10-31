@@ -21,8 +21,38 @@ To build the game run:
 ```shell
 mvn clean install -DskipTests=true
 ```
+##How to extend
+###Creating own command
+All command has to implement `org.github.got.Command` interface. Consider extending abstract class `org.github.got.commands.AbstractCommand`.
+Every command has to implement `org.github.got.Command.issue(Context)`, wich is run when user enter specified (see CommandA annotation for details). For output to console following methods from `AbstractCommand` can be used:
+ - message
+ - messageRaw
+ - system
+ - systemRaw
+ - game
+ - gameRaw
+ - oracle
+ - player
+ - playerRaw
+ - emotion
+ - combat
+ - combatHit
+ - combatMiss
+ - hostile
+Every method associated with color scheme. `*Raw` methods prints strings as isi, instead of using it as key for resource bundle (`java.util.ResourceBundle`).
 
-## License
+For user input mthod `org.github.got.Context.getScanner()` provides instance of `java.util.Scanner`.
+
+###Annotate command
+New commands has to be annotated with `org.github.got.CommandA` annotation:
+ - value - template (can be regexp) user will run from console
+ - scope - phase when command can be executed (see `org.github.got.Context.Scope` for more details)
+ - start - specifies scope which command supposed to start (for instance, current scope is `location` will be switched `combat` if start=Scope.COMBAT)
+ - runOnce - if command has to be run only once
+###Register command
+Register command using static method `org.github.got.commands.Engine.registerCommand(Command)`. It can be done at `org.github.got.Game.Game()` constructor.
+
+##License
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
